@@ -8,8 +8,6 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 COPY . /myapp
 
-RUN yarn install --check-files
-RUN yarn check --integrity
 RUN gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 RUN gem sources -u
 RUN bundle config 'mirror.https://rubygems.org' 'https://gems.ruby-china.com'
