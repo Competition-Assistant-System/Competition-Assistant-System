@@ -20,6 +20,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Postgres database
+      uses: Daniel-Marynicz/postgresql-action@master
+      with:
+        postgres_db: postgres
+        postgres_password: password
+    - name: Install nodejs/yarn/sqlite3
+      run: apt-get install -y nodejs yarn sqlite3
     - name: Set up Ruby
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
