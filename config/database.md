@@ -2,15 +2,17 @@
 
 ## tb_user
 
-|      |   id    | username | email  | password_digest |  group  | created_at | updated_at |
-| :--: | :-----: | :------: | :----: | :-------------: | :-----: | :--------: | :--------: |
-| type | integer |  string  | string |     string      | integer |  datetime  |  datetime  |
+|  | id | username | email | password_digest | grant_id | created_at | updated_at |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| | integer | string | string | string | integer | datetime | datetime |
 
 > **relation**
 >
 > tb_user.id (1=1) tb_user_information.user_id
 >
-> tb_user.group (n=1) tb_grant.id
+> tb_user.grant_id (n=1) tb_grant.id
+>
+> tb_user.id (1=n) tb_score_result.user_id
 >
 > tb_user.id (1=n) tb_file_upload.user_id
 
@@ -33,19 +35,19 @@
 
 > **relation**
 >
-> tb_grant.id (1=n) tb_user.group
+> tb_grant.id (1=n) tb_user.grant_id
 
 ## tb_score_result
 
-|      |   id    | user_id | score_type | score_origin | score_result | created_at | updated_at |
-| :--: | :-----: | :-----: | :--------: | :----------: | :----------: | :--------: | :--------: |
-| type | integer | integer |  integer   |   integer    |   integer    |  datetime  |  datetime  |
+|  | id | user_id | score_base_id | score_origin | score_result | created_at | updated_at |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| | integer | integer | integer | integer | integer | datetime | datetime |
 
 > **relation**
 >
 > tb_score_result.user_id (n=1) tb_user.id
 >
-> tb_score_result.score_type (n=1) tb_score_base.id
+> tb_score_result.score_base_id (n=1) tb_score_base.id
 
 ## tb_score_base
 
@@ -55,13 +57,13 @@
 
 > **relation**
 >
-> tb_score_base.id (1=n) tb_score_result.score_type
+> tb_score_base.id (1=n) tb_score_result.score_base_id
 
 ## tb_file_upload
 
-|      |   id    | user_id | file_size | file_path | created_at | updated_at |
-| :--: | :-----: | :-----: | :-------: | :-------: | :--------: | :--------: |
-| type | integer | integer |  string   |  string   |  datetime  |  datetime  |
+|  | id | user_id | file_size | file_path | created_at | updated_at |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| | integer | integer | long | string | datetime | datetime |
 
 > **relation**
 >
