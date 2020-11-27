@@ -32,7 +32,7 @@ development:
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: sb_admin
+  #username: competition_assistant
 
   # The password associated with the postgres role (username).
   #password:
@@ -86,4 +86,4 @@ production:
   <<: *default
   database: competition_assistant_system_production
   username: postgres
-  password: <%= ENV['SB_ADMIN_DATABASE_PASSWORD'] %>
+  password: <%= ENV['ADMIN_DATABASE_PASSWORD'] %>
