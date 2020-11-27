@@ -30,15 +30,15 @@
   <!-- Nav Item - Pages Collapse Menu -->
   <% active_context = active_link?(includes: ['buttons', 'cards']) %>
 
-  <%= nav_context :components, 'Components', icon: 'cog', active_link: active_context do %>
-    <h6 class="collapse-header">Custom Components:</h6>
+  <%= nav_context :components, '设置', icon: 'cog', active_link: active_context do %>
+    <h6 class="collapse-header">Custom 设置:</h6>
     <%= active_link_to 'Buttons', buttons_examples_path, class: 'collapse-item' %>
     <%= active_link_to 'Cards', cards_examples_path, class: 'collapse-item' %>
   <% end %>
 
   <!-- Nav Item - Utilities Collapse Menu -->
-  <%= nav_context :utilities, 'Utilities', icon: 'wrench' do %>
-    <h6 class="collapse-header">Custom Utilities:</h6>
+  <%= nav_context :utilities, '发布', icon: 'wrench' do %>
+    <h6 class="collapse-header">Custom 发布:</h6>
     <%= active_link_to 'Colors', utilities_color_examples_path, class: 'collapse-item' %>
     <%= active_link_to 'Borders', utilities_border_examples_path, class: 'collapse-item' %>
     <%= active_link_to 'Animations', utilities_animation_examples_path, class: 'collapse-item' %>
@@ -54,7 +54,7 @@
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <%= nav_context :pages, 'Pages', icon: 'folder' do %>
+  <%= nav_context :pages, '队伍详情', icon: 'folder' do %>
     <h6 class="collapse-header">Login Screens:</h6>
     <%= active_link_to "Login", login_examples_path, class: 'collapse-item' %>
     <%= active_link_to "Register", register_examples_path, class: 'collapse-item' %>
@@ -69,7 +69,7 @@
   <li class="nav-item <%= add_active_class(charts_examples_path) %>">
     <a class="nav-link" href="<%= charts_examples_path %>">
       <i class="fas fa-fw fa-chart-area"></i>
-      <span>Charts</span>
+      <span>图示</span>
     </a>
   </li>
 
@@ -77,7 +77,7 @@
   <li class="nav-item <%= add_active_class(tables_examples_path) %>">
     <a class="nav-link" href="<%= tables_examples_path %>">
       <i class="fas fa-fw fa-table"></i>
-      <span>Tables</span></a>
+      <span>表格</span></a>
   </li>
 
   <!-- Divider -->
