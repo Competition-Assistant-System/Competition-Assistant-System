@@ -8,8 +8,7 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 COPY . /myapp
 
-RUN yarn config set registry https://registry.npm.taobao.org
-RUN yarn install --check-files
+RUN rm -f package-lock.json
 RUN gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 RUN gem sources -u
 RUN bundle config 'mirror.https://rubygems.org' 'https://gems.ruby-china.com'
