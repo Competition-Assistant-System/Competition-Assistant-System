@@ -36,5 +36,7 @@ jobs:
         ruby-version: 2.7.2
     - name: Install dependencies
       run: bundle install
+    - name: Migrate database
+      run: rails db:create && rake db:migrate
     - name: Run tests
       run: bundle exec rake

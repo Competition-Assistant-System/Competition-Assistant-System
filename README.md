@@ -29,6 +29,7 @@ Things you may want to cover:
 2. run `docker-compose build`.
 3. run `docker-compose up`.
 4. run `docker-compose run web rails db:create`.
-5. Congratulation!
+5. run `docker-compose run web rake db:migrate`.
+6. Congratulation!
 
 > NOTE: after run `docker-compose run web rails db:create`, it will take some time to complie webpack.
