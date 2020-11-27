@@ -4,8 +4,8 @@ class CreateScoreResults < ActiveRecord::Migration[6.0]
       t.integer :score_origin
       t.integer :score_result
 
-      t.belongs_to :ScoreBase, index: true
-      t.belongs_to :User, index: true
+      t.belongs_to :score_base, index: true
+      t.belongs_to :user, index: true
       t.timestamps
     end
   end

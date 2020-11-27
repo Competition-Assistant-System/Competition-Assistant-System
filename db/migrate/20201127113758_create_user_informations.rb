@@ -4,7 +4,7 @@ class CreateUserInformations < ActiveRecord::Migration[6.0]
       t.string :nickname
       t.string :school
 
-      t.belongs_to :User, index: true
+      t.belongs_to :user, index: true
       t.timestamps
     end
   end
