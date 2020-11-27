@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    has_one    :UserInformation
-    belongs_to :Grant
-    has_many   :ScoreResults
-    has_many   :FileUploads
+    has_one    :user_information
+    belongs_to :grant
+    has_many   :score_results
+    has_many   :file_uploads
 end

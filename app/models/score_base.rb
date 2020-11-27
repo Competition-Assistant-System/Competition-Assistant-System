@@ -1,3 +1,3 @@
 class ScoreBase < ApplicationRecord
-    has_many :ScoreResults
+    has_many :score_results
 end
