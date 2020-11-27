@@ -2,11 +2,11 @@
 
 ## tb_user
 
-|  | id | username | email | password_digest | group | created_at | updated_at |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| | integer | string | string | string | integer | datetime | datetime |
+|      |   id    | username | email  | password_digest |  group  | created_at | updated_at |
+| :--: | :-----: | :------: | :----: | :-------------: | :-----: | :--------: | :--------: |
+| type | integer |  string  | string |     string      | integer |  datetime  |  datetime  |
 
-> relation
+> **relation**
 >
 > tb_user.id (1=1) tb_user_information.user_id
 >
@@ -16,32 +16,32 @@
 
 ## tb_user_information
 
-|  | id | user_id | nickname | school | ... | created_at | updated_at |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| | integer | integer | string | string | ... | datetime | datetime |
+|      |   id    | user_id | nickname | school | ...  | created_at | updated_at |
+| :--: | :-----: | :-----: | :------: | :----: | :--: | :--------: | :--------: |
+| type | integer | integer |  string  | string | ...  |  datetime  |  datetime  |
 
-> relation
+> **relation**
 >
 > tb_user_information.user_id (1=1) tb_user.id
 
 ## tb_grant
 
-|  | id | group_name | sys_admin | sys_read | sys_download | sys_upload | ... | created_at | updated_at |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| | | |admin?| | | | | |
-| | integer | string | bool | bool | bool | bool | ... | datetime | datetime |
+|      |   id    | group_name | sys_admin | sys_read | sys_download | sys_upload | ...  | created_at | updated_at |
+| :--: | :-----: | :--------: | :-------: | :------: | :----------: | :--------: | :--: | :--------: | :--------: |
+| note |         |            |  管理员   |   查看   |   下载文件   |  上传文件  |      |            |            |
+| type | integer |   string   |   bool    |   bool   |     bool     |    bool    | ...  |  datetime  |  datetime  |
 
-> relation
+> **relation**
 >
 > tb_grant.id (1=n) tb_user.group
 
 ## tb_score_result
 
-|  | id | user_id | score_type | score_origin | score_result | created_at | updated_at |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| | integer | integer | integer | integer | integer | datetime | datetime |
+|      |   id    | user_id | score_type | score_origin | score_result | created_at | updated_at |
+| :--: | :-----: | :-----: | :--------: | :----------: | :----------: | :--------: | :--------: |
+| type | integer | integer |  integer   |   integer    |   integer    |  datetime  |  datetime  |
 
-> relation
+> **relation**
 >
 > tb_score_result.user_id (n=1) tb_user.id
 >
@@ -49,20 +49,20 @@
 
 ## tb_score_base
 
-|  | id | base_name | base_score | weight | created_at | updated_at |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| | integer | string | integer | float | datetime | datetime |
+|      |   id    | base_name | base_score | weight | created_at | updated_at |
+| :--: | :-----: | :-------: | :--------: | :----: | :--------: | :--------: |
+| type | integer |  string   |  integer   | float  |  datetime  |  datetime  |
 
-> relation
+> **relation**
 >
 > tb_score_base.id (1=n) tb_score_result.score_type
 
 ## tb_file_upload
 
-|  | id | user_id | file_size | file_path | created_at | updated_at |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| | integer | integer | string | string | datetime | datetime |
+|      |   id    | user_id | file_size | file_path | created_at | updated_at |
+| :--: | :-----: | :-----: | :-------: | :-------: | :--------: | :--------: |
+| type | integer | integer |  string   |  string   |  datetime  |  datetime  |
 
-> relation
+> **relation**
 >
 > tb_file_upload.user_id (n=1) tb_user.id

@@ -24,10 +24,10 @@ default: &default
   port: 5432
 
 development:
-  <<: *default
-  database: competition_assistant_system_development
-  username: postgres
-  password: password
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
