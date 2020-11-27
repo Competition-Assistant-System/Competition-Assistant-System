@@ -4,7 +4,7 @@ class CreateFileUploads < ActiveRecord::Migration[6.0]
       t.bigint :file_size
       t.string :file_path
 
-      t.belongs_to :User, index: true
+      t.belongs_to :user, index: true
       t.timestamps
     end
   end

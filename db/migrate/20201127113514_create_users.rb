@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :email
       t.string :password_digest
 
-      t.belongs_to :Grant, index: true
+      t.belongs_to :grant, index: true
       t.timestamps
     end
   end
