@@ -61,6 +61,8 @@ development:
 test:
   <<: *default
   database: competition_assistant_system_test
+  host: localhost
+  port: 5432
   username: postgres
   password: password
 # As with config/credentials.yml, you never want to store sensitive information,
