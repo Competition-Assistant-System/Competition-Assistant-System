@@ -21,10 +21,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup Postgres database
-      uses: Daniel-Marynicz/postgresql-action@master
+      uses: harmon758/postgresql-action@v1
       with:
-        postgres_db: postgres
-        postgres_password: password
+        postgresql user: postgres
+        postgresql password: password
     - name: Install nodejs/yarn/sqlite3
       run: sudo apt-get install -y nodejs yarn sqlite3
     - name: Set up Ruby
