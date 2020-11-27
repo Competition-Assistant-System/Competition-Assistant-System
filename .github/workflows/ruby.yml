@@ -36,6 +36,8 @@ jobs:
         ruby-version: 2.7.2
     - name: Install dependencies
       run: bundle install
+    - name: Yarn install
+      run: yarn install --check-files
     - name: Migrate database
       run: rails db:create && rake db:migrate
     - name: Run tests
