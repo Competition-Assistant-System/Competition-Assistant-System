@@ -28,7 +28,7 @@ Things you may want to cover:
 1. check `dockerfile`, `docker-compose.yml`, `entrypoint.sh`.
 2. run `docker-compose build`.
 3. run `docker-compose up`.
-4. run `docker-compose run web db:create`.
+4. run `docker-compose run web rails db:create`.
 5. Congratulation!
 
-> NOTE: after run `docker-compose run web db:create`, it will take some time to complie webpack.
+> NOTE: after run `docker-compose run web rails db:create`, it will take some time to complie webpack.
