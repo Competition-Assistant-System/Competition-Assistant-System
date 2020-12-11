@@ -9,4 +9,7 @@ Rails.application.routes.draw do
         :forgot_password, :page_404, :blank, :charts, :tables,
         on: :collection
   end
+
+  resources :user_informations
+
 end
