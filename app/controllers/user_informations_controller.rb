@@ -7,8 +7,8 @@ class UserInformationsController < ApplicationController
   def update
     @info = UserInformation.find(params[:id])
     if @info.update(info_params)
-      flash[:success] = "Profile updated"
-      redirect_to @info # TODO:
+      flash[:success] = "Information updated"
+      render 'edit'
     else
       render 'edit'
     end
