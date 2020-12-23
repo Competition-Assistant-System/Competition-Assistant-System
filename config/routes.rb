@@ -3,10 +3,13 @@ Rails.application.routes.draw do
 
   root 'examples#index'
 
+  resources :user_informations, only: [:edit, :update]
+
   resources :examples, only: :index do
     get :buttons, :cards, :utilities_color, :utilities_border,
         :utilities_animation, :utilities_other, :login, :register,
         :forgot_password, :page_404, :blank, :charts, :tables,
         on: :collection
   end
+
 end
