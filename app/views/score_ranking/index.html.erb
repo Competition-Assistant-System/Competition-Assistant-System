@@ -1,0 +1,52 @@
+<% provide(:title, "Ranking") %>
+  <h1>Ranking</h1>
+
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Ranking table</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="rankingTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th class="align-middle text-center" rowspan="2">rank</th>
+              <th class="align-middle text-center" rowspan="2">name</th>
+              <th class="align-middle text-center" rowspan="2">school</th>
+              <% @score_item.each do |item| %>
+              <th class="align-middle text-center" colspan="3"><%= item.base_name %></th>
+              <% end %>
+              <th class="align-middle text-center" rowspan="2">score</th>
+            </tr>
+            <tr> 
+              <% @score_item.each do |item| %>
+              <th class="align-middle text-center">score</th>
+              <th class="align-middle text-center">weight</th>
+              <th class="align-middle text-center">origin</th>
+              <% end %>
+            </tr> 
+          </thead>
+          <tbody>
+            <% if @rank.empty? %>
+            <tr><td colspan="<% @score_item.size %>">空</td></tr>
+            <% else %>
+            <% @rank.each.with_index(1) do |item, index| %>
+            <tr>
+              <th class="align-middle text-center" scope="row"><%= index %></th>
+              <td class="align-middle text-center"><%= item.user_information.nickname %></td>
+              <td class="align-middle text-center"><%= item.user_information.school %></td>
+              <% item.score_results.order(:id).each do |score| %>
+              <td class="align-middle text-center"><%= score.score_result %></td>
+              <td class="align-middle text-center"><%= score.score_base.weight %></td>
+              <td class="align-middle text-center"><%= score.score_origin %></td>
+              <% end %>
+              <td class="align-middle text-center"><%= clacTotalScore item.score_results %></td>
+            </tr>
+            <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
