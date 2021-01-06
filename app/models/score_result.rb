@@ -7,6 +7,6 @@ class ScoreResult < ApplicationRecord
 private
     def calc_result_score
         score_base = self.score_base.base_score
-        self.score_result = self.score_origin / score_base
+        self.score_result = self.score_origin *0.1 / score_base
     end
 end

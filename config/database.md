@@ -41,7 +41,7 @@
 
 |      |   id    | user_id | score_base_id | score_origin | score_result | created_at | updated_at |
 | :--: | :-----: | :-----: | :-----------: | :----------: | :----------: | :--------: | :--------: |
-| type | integer | integer |    integer    |   integer    |   integer    |  datetime  |  datetime  |
+| type | integer | integer |    integer    |   integer    |    float     |  datetime  |  datetime  |
 
 > **relation**
 >
