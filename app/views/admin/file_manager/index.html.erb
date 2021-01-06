@@ -1,0 +1,58 @@
+<% provide(:title, "FileManager") %>
+  <h1>FileManager</h1>
+
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Files uploaded</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="rankingTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th class="align-middle text-center">#</th>
+              <th class="align-middle text-center">file name</th>
+              <th class="align-middle text-center">belongs</th>
+              <th class="align-middle text-center">modify time</th>
+              <th class="align-middle text-center">size</th>
+              <th class="align-middle text-center">operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @user.empty? %>
+            <tr class="table-active align-middle text-center"><td colspan="6">No record</td></tr>
+            <% else %>
+            <% clear_counter %>
+            <% @user.each do |item| %>
+                <% item.file_uploads.each do |file| %>
+                <tr>
+                <th class="align-middle text-center" scope="row"><%= index_counter %></th>
+                <td class="align-middle text-center"><%= file.file_name %></td>
+                <td class="align-middle text-center"><%= item.user_information.nickname %></td>
+                <td class="align-middle text-center"><%= file.updated_at %></td>
+                <td class="align-middle text-center"><%= file.file_size %></td>
+                <td>
+                <div class="row">
+                <div class="align-middle text-center col">
+                <%= link_to "Delete", {:controller => :file_manager,
+                    :action => 'destroy', :id => file.id }, :class => "btn btn-danger btn-block", :method => :delete %>
+                </div>
+                <div class="align-middle text-center col">
+                <%= link_to "Download", {:controller => :file_manager,
+                    :action => 'download', :id => file.id }, :class => "btn btn-primary btn-block", :method => :get %>
+                </div>
+                </div>
+                </td>
+                </tr>
+                <% end %>
+            <% end %>
+            <% end %>
+            <% if counter_is_zero? %>
+            <tr class="table-active align-middle text-center"><td colspan="6">No record</td></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
