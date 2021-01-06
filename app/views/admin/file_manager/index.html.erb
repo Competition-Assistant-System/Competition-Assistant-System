@@ -33,16 +33,22 @@
                 <td class="align-middle text-center"><%= file.updated_at %></td>
                 <td class="align-middle text-center"><%= file.file_size %></td>
                 <td>
-                <div class="row">
-                <div class="align-middle text-center col">
-                <%= link_to "Delete", {:controller => :file_manager,
-                    :action => 'destroy', :id => file.id }, :class => "btn btn-danger btn-block", :method => :delete %>
-                </div>
-                <div class="align-middle text-center col">
-                <%= link_to "Download", {:controller => :file_manager,
-                    :action => 'download', :id => file.id }, :class => "btn btn-primary btn-block", :method => :get %>
-                </div>
-                </div>
+                  <div class="row">
+                    <div class="align-middle text-center col">
+                    <%= link_to admin_file_manager_path(file.id), :class => "btn btn-danger btn-block", 
+                        data: { confirm: "Are you sure?"}, :method => :delete do%>
+                      <i class="far fa-trash-alt"></i>
+                      Delete
+                    <% end %>
+                    </div>
+                    <div class="align-middle text-center col">
+                    <%= link_to download_admin_file_manager_path(file.id), :class => "btn btn-primary btn-block", 
+                        :method => :get do %>
+                      <i class="fas fa-cloud-download-alt"></i>
+                      Download
+                    <% end %>
+                    </div>
+                  </div>
                 </td>
                 </tr>
                 <% end %>
