@@ -3,6 +3,7 @@ class SubmitFilesController < ApplicationController
   def index
     @user_id = 1
     @user = User.find_by_id(@user_id)
+    @score_item = ScoreBase.all.order(:id)
   end
 
   def upload
