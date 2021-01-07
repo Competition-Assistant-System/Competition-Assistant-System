@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
   resources :user_informations, only: [:edit, :update]
   resources :score_ranking, only: [:index]
+  resources :logins
   
   resources :examples, only: :index do
     get :buttons, :cards, :utilities_color, :utilities_border,
