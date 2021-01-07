@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  get 'final_results/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root 'examples#index'
 
   resources :user_informations, only: [:edit, :update, :show]
+  resources :final_results, only: [:index]
 
   resources :examples, only: :index do
     get :buttons, :cards, :utilities_color, :utilities_border,
