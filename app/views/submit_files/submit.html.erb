@@ -1,9 +1,20 @@
 <h1>在线提交系统</h1>
 
-<%= form_for :UploadedFiles ,url: submit_files_path do |f| %>
-    <p>请上传比赛文件</p>
-    <%= f.file_field :file_url %>
+<%= form_for :adedFiles ,url: submit_files_path do |f| %>
+
+    <p>请输入成绩<p>
+    <%= f.text_field :score_url %>
     <%= f.submit value="提交" %>
+
+<% end %>
+
+
+<%= form_for :UploadedFiles ,url: submit_files_path do |f| %>
+
+    <p>请上传比赛文件汇总压缩包</p>
+    <%= f.file_field :uploaded_file_url %>
+    <%= f.submit value="提交" %>
+
 <% end %>
 
 
