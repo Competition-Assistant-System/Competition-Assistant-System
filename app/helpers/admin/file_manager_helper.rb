@@ -1,4 +1,4 @@
-module SubmitFilesHelper
+module Admin::FileManagerHelper
     def clear_counter
         @count = 0;
     end
