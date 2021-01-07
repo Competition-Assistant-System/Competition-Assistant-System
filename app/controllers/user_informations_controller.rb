@@ -14,6 +14,10 @@ class UserInformationsController < ApplicationController
     end
   end
 
+  def show
+    @info = UserInformation.find(params[:id])
+  end
+
   private
     def info_params
       params.require(:user_information).permit(:nickname, :school)
