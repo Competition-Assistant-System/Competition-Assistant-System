@@ -1,6 +1,6 @@
-<h1>SubmitFiles#submit</h1>
+<h1>在线提交系统</h1>
 
-<%= form_for :UploadedFiles ,url: submit_path do |f| %>
+<%= form_for :UploadedFiles ,url: submit_files_path do |f| %>
     <p>请上传比赛文件</p>
     <%= f.file_field :file_url %>
     <%= f.submit value="提交" %>
