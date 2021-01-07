@@ -27,7 +27,7 @@ class Admin::FileManagerController < ApplicationController
     else
       file_path = file.get_file_path
       if File.exist?(file_path)
-        send_file("#{Rails.root}#{file.get_file_path}",
+        send_file("#{file_path}",
           filename: "#{file.file_name}",
           type: "application/octet-stream")
       else

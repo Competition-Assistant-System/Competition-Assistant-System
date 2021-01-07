@@ -8,7 +8,7 @@ class FileUpload < ApplicationRecord
 
 
     def get_file_path
-        return FileUpload::File_target + self.file_md5
+        return File.join(Rails.root,FileUpload::File_target,self.file_md5)
     end
 
     #删除文件
