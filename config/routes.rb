@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   resources :user_informations, only: [:edit, :update]
   resources :score_ranking, only: [:index]
   
-  get '/signup', to: 'logins#new'
-  resources :logins
+  get '/signup', to: 'users#new'
+  resources :users
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

@@ -1,2 +1,28 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="row">
+  <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+  <div class="col-lg-6">
+    <div class="p-5">
+      <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+      </div>
+      <%= form_with(model: @user, local: true) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :username, class: 'form-control' %>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.submit "Create my account", class: "btn btn-primary" %>
+        <% end %>
+      <hr>
+      <div class="text-center">
+        <a class="small" href="<%= forgot_password_examples_path %>">Forgot Password?</a>
+      </div>
+      <div class="text-center">
+        <a class="small" href="<%= register_examples_path %>">Create an Account!</a>
+      </div>
+    </div>
+  </div>
+</div>
