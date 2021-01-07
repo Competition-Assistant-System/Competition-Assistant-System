@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
   namespace :admin do
     resources :file_manager, only: [:index, :destroy] do
       get 'download', on: :member
@@ -14,7 +15,10 @@ Rails.application.routes.draw do
   end
   resources :user_informations, only: [:edit, :update]
   resources :score_ranking, only: [:index]
+  
   resources :logins
+  get '/login', to: 'sessions#new'
+
   
   resources :examples, only: :index do
     get :buttons, :cards, :utilities_color, :utilities_border,
