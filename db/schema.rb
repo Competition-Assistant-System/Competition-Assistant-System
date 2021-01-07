@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_114311) do
+ActiveRecord::Schema.define(version: 2021_01_06_023428) do
 
   create_table "file_uploads", force: :cascade do |t|
     t.bigint "file_size"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_114311) do
 
   create_table "score_results", force: :cascade do |t|
     t.integer "score_origin"
-    t.integer "score_result"
+    t.float "score_result"
     t.integer "score_base_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_114311) do
     t.integer "grant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["grant_id"], name: "index_users_on_grant_id"
   end
 

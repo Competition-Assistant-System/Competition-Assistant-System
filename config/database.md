@@ -2,9 +2,9 @@
 
 ## tb_user
 
-|  | id | username | email | password_digest | grant_id | created_at | updated_at |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| | integer | string | string | string | integer | datetime | datetime |
+|      |   id    | username | email  | password_digest | grant_id | created_at | updated_at |
+| :--: | :-----: | :------: | :----: | :-------------: | :------: | :--------: | :--------: |
+| type | integer |  string  | string |     string      | integer  |  datetime  |  datetime  |
 
 > **relation**
 >
@@ -39,9 +39,9 @@
 
 ## tb_score_result
 
-|  | id | user_id | score_base_id | score_origin | score_result | created_at | updated_at |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| | integer | integer | integer | integer | integer | datetime | datetime |
+|      |   id    | user_id | score_base_id | score_origin | score_result | created_at | updated_at |
+| :--: | :-----: | :-----: | :-----------: | :----------: | :----------: | :--------: | :--------: |
+| type | integer | integer |    integer    |   integer    |    float     |  datetime  |  datetime  |
 
 > **relation**
 >
@@ -61,9 +61,9 @@
 
 ## tb_file_upload
 
-|  | id | user_id | file_size | file_path | created_at | updated_at |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| | integer | integer | long | string | datetime | datetime |
+|      |   id    | user_id | file_size | file_path | created_at | updated_at |
+| :--: | :-----: | :-----: | :-------: | :-------: | :--------: | :--------: |
+| type | integer | integer |   long    |  string   |  datetime  |  datetime  |
 
 > **relation**
 >
