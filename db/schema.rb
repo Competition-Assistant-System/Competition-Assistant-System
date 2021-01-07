@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 2021_01_06_072728) do
     t.index ["user_id"], name: "index_score_results_on_user_id"
   end
 
+  create_table "uploaded_files", force: :cascade do |t|
+    t.string "name"
+    t.string "uploaded_file_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "user_informations", force: :cascade do |t|
     t.string "nickname"
     t.string "school"
