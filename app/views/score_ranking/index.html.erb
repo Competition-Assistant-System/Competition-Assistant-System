@@ -29,7 +29,7 @@
           </thead>
           <tbody>
             <% if @rank.empty? %>
-            <tr><td colspan="<% @score_item.size %>">空</td></tr>
+            <tr><td colspan="<%= @score_item.size %>">空</td></tr>
             <% else %>
             <% @rank.each.with_index(1) do |item, index| %>
             <tr>

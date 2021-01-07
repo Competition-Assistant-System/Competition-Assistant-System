@@ -61,9 +61,9 @@
 
 ## tb_file_upload
 
-|      |   id    | user_id | file_size | file_path | created_at | updated_at |
-| :--: | :-----: | :-----: | :-------: | :-------: | :--------: | :--------: |
-| type | integer | integer |   long    |  string   |  datetime  |  datetime  |
+|      |   id    | user_id | file_size | file_name | file_md5 | created_at | updated_at |
+| :--: | :-----: | :-----: | :-------: | :-------: | :------: | :--------: | :--------: |
+| type | integer | integer |   long    |  string   |  string  |  datetime  |  datetime  |
 
 > **relation**
 >
