@@ -15,11 +15,11 @@ ActiveRecord::Schema.define(version: 2021_01_06_072728) do
   create_table "file_uploads", force: :cascade do |t|
     t.integer "file_size"
     t.string "file_name"
-    t.integer "user_id"
+    t.integer "User_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "file_md5"
-    t.index ["user_id"], name: "index_file_uploads_on_user_id"
+    t.index ["User_id"], name: "index_file_uploads_on_User_id"
   end
 
   create_table "grants", force: :cascade do |t|
@@ -43,39 +43,32 @@ ActiveRecord::Schema.define(version: 2021_01_06_072728) do
   create_table "score_results", force: :cascade do |t|
     t.integer "score_origin"
     t.float "score_result"
-    t.integer "score_base_id"
-    t.integer "user_id"
+    t.integer "ScoreBase_id"
+    t.integer "User_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["score_base_id"], name: "index_score_results_on_score_base_id"
-    t.index ["user_id"], name: "index_score_results_on_user_id"
-  end
-
-  create_table "uploaded_files", force: :cascade do |t|
-    t.string "name"
-    t.string "uploaded_file_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ScoreBase_id"], name: "index_score_results_on_ScoreBase_id"
+    t.index ["User_id"], name: "index_score_results_on_User_id"
   end
 
   create_table "user_informations", force: :cascade do |t|
     t.string "nickname"
     t.string "school"
-    t.integer "user_id"
+    t.integer "User_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_user_informations_on_user_id"
+    t.index ["User_id"], name: "index_user_informations_on_User_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.integer "grant_id"
+    t.integer "Grant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["Grant_id"], name: "index_users_on_Grant_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["grant_id"], name: "index_users_on_grant_id"
   end
 
 end
