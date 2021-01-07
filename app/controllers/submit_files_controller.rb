@@ -1,24 +1,71 @@
 class SubmitFilesController < ApplicationController
 
-  def submit
-    @uploaded_file = UploadedFile.new(params[:uploaded_file])
-    unless request.get?
-        @uploaded_file.uploaded_file_url = uploadfile(@uploaded_file.uploaded_file_url)
-        @uploaded_file.save
+  def index
+    @user_id = 1
+    @user = User.find_by_id(@user_id)
+  end
+
+  def upload
+    @user_id = 1
+    if request.post?
+      # save file to path
+      uploaded_io = params[:upload_file]
+      if uploaded_io.nil?
+        redirect_to submit_files_path, flash: { danger: '传输的文件不能为空' }
+      else
+        filename = File.join(Rails.root, FileUpload::File_target, uploaded_io.original_filename)
+        File.open(filename, 'wb') do |file|
+          file.write(uploaded_io.read)
+        end
+
+        uploaded_file = FileUpload.new(user_id: @user_id)
+        # do some calc
+        uploaded_file.upload_file filename
+        if uploaded_file.save
+          respond_to do |format|
+            format.html { redirect_to(submit_files_path, flash: { success: '成功上传文件' }) }
+            format.xml  { head :ok }
+          end
+        else
+          respond_to do |format|
+            format.html { redirect_to(submit_files_path, flash: { danger: '上传文件失败' }) }
+            format.xml  { head :ok }
+          end
+        end
+      end
     end
   end
 
-  def uploadfile(file)
-    if !file.original_filename.empty?
-      @filename = file.original_filename
-      #设置目录路径，如果目录不存在，生成新目录
-      FileUtils.mkdir("#{Rails.root}/public/upload") unless File.exist?("#{Rails.root}/public/upload")
-      #写入文件
-      ##wb 表示通过二进制方式写，可以保证文件不损坏
-      File.open("#{Rails.root}/public/upload/#{@filename}", "wb") do |f|
-        f.write(file.read)
+  def destroy
+    file = FileUpload.find_by_id(params[:id])
+    if file == nil
+      flash.now[:danger] = '该记录已被删除'
+      redirect_to submit_files_path
+    else
+      # delete file
+      file.delete_file
+      # delete record
+      file.destroy
+      respond_to do |format|
+        format.html { redirect_to(submit_files_path, flash: { success: '该记录已被删除' }) }
+        format.xml  { head :ok }
       end
-      return @filename
+    end    
+  end
+
+  def download
+    file = FileUpload.find_by_id(params[:id])
+    if file == nil
+      redirect_to submit_files_path, flash: { danger: '没有记录，下载失败！' }
+    else
+      file_path = file.get_file_path
+      if File.exist?(file_path)
+        send_file("#{file_path}",
+          filename: "#{file.file_name}",
+          type: "application/octet-stream")
+      else
+        redirect_to submit_files_path, flash: { danger: '文件不存在，下载失败！' }
+      end
     end
   end
 
