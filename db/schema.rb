@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_023428) do
+ActiveRecord::Schema.define(version: 2021_01_07_020133) do
 
   create_table "file_uploads", force: :cascade do |t|
     t.bigint "file_size"
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(version: 2021_01_06_023428) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["score_base_id"], name: "index_score_results_on_score_base_id"
     t.index ["user_id"], name: "index_score_results_on_user_id"
+  end
+
+  create_table "uploaded_files", force: :cascade do |t|
+    t.string "name"
+    t.string "uploaded_file_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_informations", force: :cascade do |t|
