@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  get '/logout', to: 'sessions#destroy'
   
   resources :examples, only: :index do
     get :buttons, :cards, :utilities_color, :utilities_border,

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   layout 'auth', only: [:new]
-  before_action :set_user, only: [:show, :edit, :update]
+  skip_before_action :require_login, only: [:new, :create]
+  before_action :set_user, :auth_check, only: [:show, :edit, :update]
 
 def show
 end
@@ -51,5 +52,12 @@ private
 
   def info_params
     params.require(:user_information).permit(:nickname, :school)
+  end
+
+  def auth_check
+    unless is_admin? || is_current_user?(@user.id)
+      flash[:danger] = "您没有权限访问指定页面"
+      redirect_to current_user
+    end
   end
 end
