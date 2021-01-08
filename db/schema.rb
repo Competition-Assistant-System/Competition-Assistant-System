@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_072728) do
+ActiveRecord::Schema.define(version: 2021_01_08_044220) do
 
   create_table "file_uploads", force: :cascade do |t|
     t.integer "file_size"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 2021_01_06_072728) do
     t.boolean "sys_read"
     t.boolean "sys_download"
     t.boolean "sys_upload"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
