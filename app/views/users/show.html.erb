@@ -14,14 +14,16 @@
               <th class="align-middle text-center">Email</th>
               <th class="align-middle text-center">Nickname</th>
               <th class="align-middle text-center">School</th>
+              <th class="align-middle text-center">Auth</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-                <td class="align-middle text-center"><%= @user.username %></td>
-                <td class="align-middle text-center"><%= @user.email %></td>
-                <td class="align-middle text-center"><%= @user_info.nickname %></td>
-                <td class="align-middle text-center"><%= @user_info.school %></td>
+              <td class="align-middle text-center"><%= @user.username %></td>
+              <td class="align-middle text-center"><%= @user.email %></td>
+              <td class="align-middle text-center"><%= @user_info.nickname %></td>
+              <td class="align-middle text-center"><%= @user_info.school %></td>
+              <td class="align-middle text-center"><%= get_user_auth @user %></td>
             </tr>
           </tbody>
         </table>
