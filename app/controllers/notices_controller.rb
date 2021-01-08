@@ -26,16 +26,9 @@ class NoticesController < ApplicationController
       render 'edit'
     end
   end
-
+  
   def index
     @notices = Notice.all
-  end
-
-  def destroy
-    @notice = Notice.find(params[:id])
-    @notice.destroy
-
-    redirect_to notices_path
   end
   
   private
