@@ -11,11 +11,13 @@ Rails.application.routes.draw do
 
   root 'examples#index'
 
+
   resources :submit_files, only: [:index, :destroy] do
     post 'upload', on: :collection
     get 'download', on: :member
   end
-  resources :user_informations, only: [:edit, :update]
+  resources :user_informations, only: [:edit, :update, :show]
+  resources :final_results, only: [:index]
   resources :score_ranking, only: [:index]
   
   get '/signup', to: 'users#new'
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
 
   resources :notices
   
+
   resources :examples, only: :index do
     get :buttons, :cards, :utilities_color, :utilities_border,
         :utilities_animation, :utilities_other, :login, :register,
