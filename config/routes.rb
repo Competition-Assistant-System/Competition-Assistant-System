@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   root 'examples#index'
 
 
-  resources :submit_files, only: [:index, :destroy] do
+  resources :submit_files, only: [:index, :edit, :update, :destroy] do
     post 'upload', on: :collection
     get 'download', on: :member
   end
