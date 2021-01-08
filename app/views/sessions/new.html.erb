@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+  <div class="col-lg-6">
+    <div class="p-5">
+      <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">用户登录</h1>
+      </div>
+        <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+        <div class="form-group">    
+            <input class="form-control form-control-user" id="session_email" name="session[email]" type="email" placeholder="邮箱"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" id="session_password" name="session[password]" type="password" placeholder="密码"/>
+        </div>
+        <input class="btn btn-primary btn-user btn-block" name="commit" type="submit" value="登录" />
+        <% end %>
+        <p>是新用户？<%= link_to "现在注册!", signup_path %></p>
+    </div>
+    </div>
+</div>
