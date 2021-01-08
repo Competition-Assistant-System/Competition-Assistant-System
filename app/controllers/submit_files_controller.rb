@@ -4,6 +4,11 @@ class SubmitFilesController < ApplicationController
     @user_id = 1
     @user = User.find_by_id(@user_id)
     @score_item = ScoreBase.all.order(:id)
+    @input_scores = Array.new(ScoreBase.all.size,1)
+  end
+
+  def store_scores
+    
   end
 
   def upload

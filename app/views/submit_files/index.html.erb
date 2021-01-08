@@ -47,15 +47,18 @@
                   <th class="align-middle text-center">score</th>
               </tr>
              
+              <%= form_for @input_scores, url: {action: "store_scores"} do |f| %>
               <% @score_item.each do |item| %>
               <tr>
                   <th class="align-middle text-center"><%= item.base_name %></th>
                   <th class="align-middle text-center"><%= item.base_score %></th>
                   <th class="align-middle text-center"><%= item.weight %></th>
                   <th class="align-middle text-center">
-
+                      <%= text_field(:input_scores, "#{item.id}") %>
                   </th>
               </tr>
+              <% end %>
+                <%= f.submit "Create" %>
               <% end %>
             </tr> 
           </thead>
