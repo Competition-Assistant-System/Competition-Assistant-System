@@ -6,6 +6,8 @@
 | :--: | :-----: | :------: | :----: | :-------------: | :------: | :--------: | :--------: |
 | type | integer |  string  | string |     string      | integer  |  datetime  |  datetime  |
 
+User.create(username: "1", ?> email: "123@123", password_digest: "1",grant_id: "2")
+
 > **relation**
 >
 > tb_user.id (1=1) tb_user_information.user_id
@@ -32,6 +34,8 @@
 | :--: | :-----: | :--------: | :-------: | :------: | :----------: | :--------: | :--: | :--------: | :--------: |
 | note |         |            |  管理员   |   查看   |   下载文件   |  上传文件  |      |            |            |
 | type | integer |   string   |   bool    |   bool   |     bool     |    bool    | ...  |  datetime  |  datetime  |
+
+Grant.create(id: "2", group_name: "1", ?> sysadmin: "false", sys_read: "false",sys_download: "false",sys_upload:"false")
 
 > **relation**
 >
