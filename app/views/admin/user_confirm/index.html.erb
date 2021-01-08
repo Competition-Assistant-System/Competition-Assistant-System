@@ -2,14 +2,15 @@
 <p>Find me in app/views/admin/user_confirm/index.html.erb</p>
 
 <!-- list the un-audited application here  -->
-<h1> Unaudited application</h1>
+<h1> Unaudited Application</h1>
 <table>
 <tbody>
 <% if !@user_unaudit.nil? then %>
     <% @user_unaudit.each do |user| %>
         <tr>
-            <td><%= user.name %></td>
-            <!-- other information here -->
+            <td><%= user.nickname %></td>
+            <td><%= user.school %></td>
+            <!-- may need other information-->
             <td><%= link_to 'Approve', user_confirm, method: approve,
                             data: {confirm: 'Are you sure?'} %></td>
             <td><%= link_to 'Disapprove', user_confirm, method: disapprove,
@@ -17,7 +18,25 @@
         </tr>
     <% end %>
 <% else %>
-    <p> No application </p>
+    <p> No Unaudited Application </p>
+<% end %>
+
+<h1> Audited Application </h1>
+<table>
+<tbody>
+<table>
+<tbody>
+<% if !@user_audit.nil? then %>
+  <% @user_audit.each do |user| %>
+    <tr>
+      <td><%= user.nickname %></td>
+      <td><%= user.school %></td>
+      <td><%= link_to 'Revocation', user_comfirm, method: disapprove,
+                      data: {confirm: 'Are you sure?'} %></td>
+    </tr>
+  <% end %>
+<% else %>
+  <p> No Audited Application </p>
 <% end %>
 </tbody>
 </table>
