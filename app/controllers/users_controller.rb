@@ -9,7 +9,7 @@ end
 
 def create
     @user = User.new(user_params)
-    @user.Grant_id = 2
+    @user.grant = Grant.find(2)
     if @user.save
       log_in @user
       redirect_to user_url(@user)
