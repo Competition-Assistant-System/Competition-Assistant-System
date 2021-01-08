@@ -1,0 +1,25 @@
+<h1>公告列表</h1>
+</p>
+<%= link_to 'New', new_notice_path %>  #发布新通知按钮
+</p>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+
+  <% @notices.each do |notice| %>
+    <tr>
+      <td><%= notice.title %></td>
+      <td><%= notice.text %></td>
+      <td><%= link_to 'Show', notice_path(notice) %></td>
+      <td><%= link_to 'Edit', edit_notice_path(notice) %></td>
+      <td><%= link_to 'Delete', notice_path(notice),
+              method: :delete,
+              data: { confirm: 'Are you sure' } %></td>      
+    </tr>
+  <% end %>
+</table>
+
+      
