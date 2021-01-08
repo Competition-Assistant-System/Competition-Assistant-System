@@ -3,6 +3,72 @@
 
   <div class="card shadow mb-4">
     <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Scores uploaded</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <td>
+              <th class="align-middle text-center">#</th>
+              <th class="align-middle text-center">score</th>
+              <th class="align-middle text-center">updated time</th>
+            </td>
+          </thead>
+          <tbody>
+            <% clear_counter %>
+            <% @user.score_results.each do |score| %>
+            <tr>
+            <th class="align-middle text-center" scope="row"><%= index_counter %></th>
+            <td class="align-middle text-center"><%= score.score_result %></td>
+            <td class="align-middle text-center"><%= score.created_at %></td>
+            </tr>
+            <% end %>
+            <% if counter_is_zero? %>
+            <tr class="table-active align-middle text-center"><td colspan="6">No record</td></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="90%" cellspacing="0">
+          <thead>
+           <tr> 
+              <tr>
+                  <th class="align-middle text-center">item</th>
+                  <th class="align-middle text-center">base score</th>
+                  <th class="align-middle text-center">weight</th>
+                  <th class="align-middle text-center">score</th>
+              </tr>
+             
+              <% @score_item.each do |item| %>
+              <tr>
+                  <th class="align-middle text-center"><%= item.base_name %></th>
+                  <th class="align-middle text-center"><%= item.base_score %></th>
+                  <th class="align-middle text-center"><%= item.weight %></th>
+                  <th class="align-middle text-center">
+                      <!-- %= form_for @input_scores[item.id-1], url: {action: "store_scores"} do |f| %> -->
+                          <!--     %= text_field(:input_scores, "#{item.id}") %> -->
+                          <!-- %= f.submit "Create" %>  -->
+                          <!-- % end %> -->
+                  </th>
+              </tr>
+              <% end %>
+             </tr> 
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Files uploaded</h6>
     </div>
     <div class="card-body">
