@@ -1,13 +1,29 @@
 <% provide(:title, @info.nickname) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-        <lable> Name: </lable>
-        <%= @info.nickname %>
-        <p> </p>
-        <lable> school: </lable>
-        <%= @info.school %>
-        <p> </p>
-    </section>
-  </aside>
-</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">User Information</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="rankingTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th class="align-middle text-center">User Name</th>
+              <th class="align-middle text-center">Nickname</th>
+              <th class="align-middle text-center">School</th>
+            </tr>
+
+            <tr>
+              <th class="align-middle text-center"><%= @info.user.username %></th>
+              <th class="align-middle text-center"><%= @info.nickname %></th>
+              <th class="align-middle text-center"><%= @info.school %></th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
