@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'download', on: :member
   end
   resources :user_informations, only: [:edit, :update, :show]
+  resources :final_results, only: [:index]
   resources :score_ranking, only: [:index]
 
   resources :examples, only: :index do
