@@ -1,4 +1,4 @@
-class Admin::BaseScoreController < ApplicationController
+class Admin::BaseScoreController < Admin::ApplicationController
   before_action :set_admin_base_score, only: [:edit, :update, :destroy]
 
   def index

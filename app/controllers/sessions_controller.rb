@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  layout 'auth'
+  skip_before_action :require_login, only: [:new, :create]
+  
   def new
   end
 
@@ -8,7 +11,7 @@ class SessionsController < ApplicationController
         log_in user
         redirect_to user
     else
-      flash[:danger] = 'Invalid email/password combination' # 不完全正确
+      flash[:danger] = '错误的用户名/密码' # 不完全正确
       render 'new'
     end
   end

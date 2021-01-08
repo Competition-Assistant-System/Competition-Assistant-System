@@ -1,0 +1,30 @@
+<% provide(:title, "Edit information") %>
+<h1>User information</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Edit information</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <%= form_for @user_info, url: {action: "update"} do |f| %>
+          <div class="form-group">
+            <%= label_tag :nickname, "Nickname"%>
+            <%= f.text_field :nickname, :class=>"form-control" %>
+          </div>
+          <div class="form-group">
+            <%= label_tag :school, "School"%>
+            <%= f.text_field :school, :class=>"form-control" %>
+          </div>
+            <%= f.submit "Submit", :class=>"btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+    <%= link_to @user, :class => "btn btn-primary", 
+        :method => :get do %>
+        <i class="fas fa-arrow-left"></i>
+        Back
+    <% end %>
+    </div>
+</div>
