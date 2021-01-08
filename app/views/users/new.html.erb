@@ -7,17 +7,17 @@
       </div>
       <%= form_with(model: @user, local: true) do |f| %>
         <div class="form-group">
-            <input type="text" class="form-control form-control-user" id="user_name" name="user[name]" placeholder="Name">
+            <input type="text" class="form-control form-control-user" id="user_name" name="user[name]" placeholder="姓名">
         </div>
         <div class="form-group">
-          <input type="email" class="form-control form-control-user" id="user_email" name="user[email]" placeholder="Email Address">
+          <input type="email" class="form-control form-control-user" id="user_email" name="user[email]" placeholder="邮箱">
         </div>
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <input type="password" class="form-control form-control-user" id="user_password" name="user[password]" placeholder="Password">
+            <input type="password" class="form-control form-control-user" id="user_password" name="user[password]" placeholder="密码">
           </div>
           <div class="col-sm-6">
-            <input type="password" class="form-control form-control-user" id="user_password_confirmation" name="user[password_confirmation]"  placeholder="Repeat Password">
+            <input type="password" class="form-control form-control-user" id="user_password_confirmation" name="user[password_confirmation]"  placeholder="确认密码">
           </div>
         </div>
         <input class="btn btn-primary btn-user btn-block" name="commit" type="submit" value="创建账户" />
