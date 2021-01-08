@@ -1,0 +1,10 @@
+<% provide(:title, 'All results') %>
+<h1>All results</h1>
+
+<ul class="results">
+  <% @results.each do |result| %>
+    <li>
+      <%= result.score_result %>
+    </li>
+  <% end %>
+</ul>
