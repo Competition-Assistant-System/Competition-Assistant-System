@@ -6,7 +6,7 @@
 | :--: | :-----: | :------: | :----: | :-------------: | :------: | :--------: | :--------: |
 | type | integer |  string  | string |     string      | integer  |  datetime  |  datetime  |
 
-User.create(username: "1", ?> email: "123@123", password_digest: "1",grant_id: "2")
+User.create(username: "1", email: "123@163.com", password_digest: "1",Grant_id: 2)
 
 > **relation**
 >
