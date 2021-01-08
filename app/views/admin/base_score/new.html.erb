@@ -1,0 +1,20 @@
+<% provide(:title, "New Base Scores") %>
+<h1>New Base Score</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">New Base Score</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <%= render 'form', base_score: @admin_base_score, post_url: admin_base_score_index_path(@admin_base_score) %>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+    <%= link_to admin_base_score_index_path, :class => "btn btn-primary", 
+        :method => :get do %>
+        <i class="fas fa-arrow-left"></i>
+        Back
+    <% end %>
+    </div>
+</div>
