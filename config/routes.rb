@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
+    resources :base_score
+  end
+  namespace :admin do
     resources :file_manager, only: [:index, :destroy] do
       get 'download', on: :member
     end
@@ -9,7 +12,7 @@ Rails.application.routes.draw do
   root 'examples#index'
 
 
-  resources :submit_files, only: [:index, :destroy] do
+  resources :submit_files, only: [:index, :edit, :update, :destroy] do
     post 'upload', on: :collection
     get 'download', on: :member
   end

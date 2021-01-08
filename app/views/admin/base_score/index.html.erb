@@ -1,0 +1,64 @@
+<% provide(:title, "Admin Base Scores") %>
+<h1>Admin Base Scores</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Base Scores</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="scoreTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th class="align-middle text-center">#</th>
+              <th class="align-middle text-center">Score name</th>
+              <th class="align-middle text-center">Base</th>
+              <th class="align-middle text-center">weight</th>
+              <th class="align-middle text-center">modify time</th>
+              <th class="align-middle text-center">operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% clear_counter %>
+            <% @admin_base_scores.each do |item| %>
+                <tr>
+                <th class="align-middle text-center" scope="row"><%= index_counter %></th>
+                <td class="align-middle text-center"><%= item.base_name %></td>
+                <td class="align-middle text-center"><%= item.base_score %></td>
+                <td class="align-middle text-center"><%= item.weight %></td>
+                <td class="align-middle text-center"><%= item.updated_at %></td>
+                <td>
+                  <div class="row">
+                    <div class="align-middle text-center col">                    
+                    <%= link_to admin_base_score_path(item), :class => "btn btn-danger btn-block", 
+                        data: { confirm: "Are you sure?"}, :method => :delete do%>
+                      <i class="far fa-trash-alt"></i>
+                      Delete
+                    <% end %>
+                    </div>
+                    <div class="align-middle text-center col">
+                    <%= link_to edit_admin_base_score_path(item), :class => "btn btn-primary btn-block", 
+                        :method => :get do %>
+                      <i class="fas fa-eraser"></i>
+                      Modify
+                    <% end %>
+                    </div>
+                  </div>
+                </td>
+                </tr>
+            <% end %>
+            <% if counter_is_zero? %>
+            <tr class="table-active align-middle text-center"><td colspan="6">No record</td></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+    <%= link_to new_admin_base_score_path, :class => "btn btn-primary", 
+        :method => :get do %>
+        <i class="fas fa-plus"></i>
+        New Base Score
+    <% end %>
+    </div>
+</div>
