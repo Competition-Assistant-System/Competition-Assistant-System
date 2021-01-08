@@ -37,7 +37,7 @@
   <div class="card shadow mb-4">
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" width="100%" cellspacing="0">
+        <table class="table table-bordered" width="90%" cellspacing="0">
           <thead>
            <tr> 
               <tr>
@@ -47,20 +47,20 @@
                   <th class="align-middle text-center">score</th>
               </tr>
              
-              <%= form_for @input_scores, url: {action: "store_scores"} do |f| %>
               <% @score_item.each do |item| %>
               <tr>
                   <th class="align-middle text-center"><%= item.base_name %></th>
                   <th class="align-middle text-center"><%= item.base_score %></th>
                   <th class="align-middle text-center"><%= item.weight %></th>
                   <th class="align-middle text-center">
-                      <%= text_field(:input_scores, "#{item.id}") %>
+                      <!-- %= form_for @input_scores[item.id-1], url: {action: "store_scores"} do |f| %> -->
+                          <!--     %= text_field(:input_scores, "#{item.id}") %> -->
+                          <!-- %= f.submit "Create" %>  -->
+                          <!-- % end %> -->
                   </th>
               </tr>
               <% end %>
-                <%= f.submit "Create" %>
-              <% end %>
-            </tr> 
+             </tr> 
           </thead>
         </table>
       </div>
