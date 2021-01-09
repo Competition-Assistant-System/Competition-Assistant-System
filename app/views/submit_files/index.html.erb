@@ -3,11 +3,55 @@
 
   <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Files uploaded</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Result upload</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" id="rankingTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+           <tr> 
+              <th class="align-middle text-center">Test name</th>
+              <th class="align-middle text-center">Base score</th>
+              <th class="align-middle text-center">Weight</th>
+              <th class="align-middle text-center">Your score</th>
+              <th class="align-middle text-center">Result</th>
+              <th class="align-middle text-center">Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @score_item.each do |item| %>
+              <tr>
+                  <td class="align-middle text-center"><%= item.base_name %></td>
+                  <td class="align-middle text-center"><%= item.base_score %></td>
+                  <td class="align-middle text-center"><%= item.weight %></td>
+                  <td class="align-middle text-center"><%= find_user_score item %></td>
+                  <td class="align-middle text-center"><%= find_user_result item %></td>
+                  <td>
+                  <div class="row">
+                    <div class="align-middle text-center col">
+                    <%= link_to edit_submit_file_path(item), :class => "btn btn-primary btn-block", 
+                        :method => :get do %>
+                      <i class="fas fa-eraser"></i>
+                      Modify
+                    <% end %>
+                    </div>
+                  </div>
+                  </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Files upload</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="filesTable" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th class="align-middle text-center">#</th>
@@ -52,12 +96,12 @@
         </table>
       </div>
     </div>
+    <div class="card-footer bg-secondary text-white">
+    <%= form_tag({action: :upload}, multipart: true) do %>
+      <%= file_field_tag 'upload_file' %>
+      <%= submit_tag "Submit", :class=>"btn btn-primary" %>
+    <% end %>
+    </div>
   </div>
-
-
-<%= form_tag({action: :upload}, multipart: true) do %>
-  <%= file_field_tag 'upload_file' %>
-  <%= submit_tag("Submit") %>
-<% end %>
 
 

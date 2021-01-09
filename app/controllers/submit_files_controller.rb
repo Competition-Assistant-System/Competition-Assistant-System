@@ -1,8 +1,25 @@
 class SubmitFilesController < ApplicationController
+  before_action :get_user
+  before_action :set_score_result, only: [:edit, :update]
 
   def index
-    @user_id = 1
-    @user = User.find_by_id(@user_id)
+    @score_item = ScoreBase.all.order(:id)
+  end
+
+  def edit 
+    @score_base = ScoreBase.find_by_id(params[:id])
+  end
+
+  def update
+    respond_to do |format|
+      if @score_result.update(score_params)
+        format.html { redirect_to submit_files_path, flash: { success: '条目已被成功更新'} }
+        format.json { render :show, status: :ok, location: submit_files_path }
+      else
+        format.html { render :edit }
+        format.json { render json: @score_result.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def upload
@@ -68,5 +85,21 @@ class SubmitFilesController < ApplicationController
       end
     end
   end
+
+  private
+    def get_user
+      @user_id = 1
+      @user = User.find_by_id(@user_id)
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_score_result
+      @score_result = helpers.find_user_score_result_by_id params[:id]
+    end
+
+    # Only allow a list of trusted parameters through.
+    def score_params
+      params.fetch(:score_result, {}).permit(:score_origin)
+    end
 
 end

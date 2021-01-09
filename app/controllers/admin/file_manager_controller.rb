@@ -1,4 +1,4 @@
-class Admin::FileManagerController < ApplicationController
+class Admin::FileManagerController < Admin::ApplicationController
   def index
     @user = User.all
   end

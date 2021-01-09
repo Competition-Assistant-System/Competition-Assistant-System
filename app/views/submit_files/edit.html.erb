@@ -1,0 +1,45 @@
+<% provide(:title, "Editing Scores") %>
+<h1>Editing Score</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Editing Score</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+      <table class="table table-bordered" cellspacing="0">
+        <thead>
+           <tr> 
+              <th class="align-middle text-center">Test name</th>
+              <th class="align-middle text-center">Base score</th>
+              <th class="align-middle text-center">Weight</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="align-middle text-center"><%= @score_base.base_name %></td>
+                  <td class="align-middle text-center"><%= @score_base.base_score %></td>
+                  <td class="align-middle text-center"><%= @score_base.weight %></td>
+              </tr>
+          </tbody>
+      </table>
+      <%= form_for(@score_result, url: submit_file_path, local: true) do |form| %>
+        <div class="form-group">
+        <%= label_tag "Your score	"%>
+        <%= form.text_field :score_origin, :class => "form-control" %>
+        </div>
+        <%= form.submit :class => "btn btn-primary" do %>
+          <i class="fas fa-plus"></i>
+          Update
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+    <%= link_to submit_files_path, :class => "btn btn-primary", 
+        :method => :get do %>
+        <i class="fas fa-arrow-left"></i>
+        Back
+    <% end %>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<%= form_for(base_score, url: post_url, local: true) do |form| %>
+  <% if base_score.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(base_score.errors.count, "error") %> prohibited this admin_base_score from being saved:</h2>
+
+      <ul>
+        <% base_score.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+  <%= label_tag :score_base_base_name, "Score name"%>
+  <%= form.text_field :base_name, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= label_tag :score_base_base_score, "Basic score"%>
+  <%= form.text_field :base_score, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= label_tag :score_base_weight, "Weight"%>
+  <%= form.text_field :weight, :class => "form-control" %>
+  </div>
+  <%= form.submit :class => "btn btn-primary" do %>
+    <i class="fas fa-plus"></i>
+    New Base Score
+  <% end %>
+<% end %>
