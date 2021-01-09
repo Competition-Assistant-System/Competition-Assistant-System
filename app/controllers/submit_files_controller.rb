@@ -1,6 +1,7 @@
 class SubmitFilesController < ApplicationController
   before_action :get_user
   before_action :set_score_result, only: [:edit, :update]
+  before_action :upload_check, only: [:edit, :update, :upload, :destroy, :download]
 
   def index
     @score_item = ScoreBase.all.order(:id)
@@ -88,7 +89,11 @@ class SubmitFilesController < ApplicationController
 
   private
     def get_user
-      @user = User.find(current_user.id)
+      @user = User.find_by_id(current_user.id)
+      if @user.nil?
+        flash[:danger] = "系统错误"
+        redirect_to submit_files_path
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -99,6 +104,13 @@ class SubmitFilesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def score_params
       params.fetch(:score_result, {}).permit(:score_origin)
+    end
+
+    def upload_check
+      unless can_upload?
+        flash[:danger] = "您没有上传的权限"
+        redirect_to submit_files_path
+      end
     end
 
 end

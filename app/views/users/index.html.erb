@@ -21,7 +21,7 @@
           </thead>
           <tbody>
             <% @user.each.with_index(1) do |item, index| %>
-            <tr>
+            <tr class="<%= valid_color(item) %>">
               <th class="align-middle text-center" scope="row"><%= index %></th>
               <td class="align-middle text-center"><%= item.username %></td>
               <td class="align-middle text-center"><%= item.email %></td>

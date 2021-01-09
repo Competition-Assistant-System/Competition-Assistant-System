@@ -1,0 +1,12 @@
+<% if is_admin? %>
+<div class="btn-group" role="group" aria-label="Basic example">
+<%= link_to approve_user_path(user), :class => "btn btn-success" do %>
+    <i class="fas fa-check"></i>
+    Approve
+<% end %>
+<%= link_to disapprove_user_path(user), :class => "btn btn-secondary" do %>
+    <i class="fas fa-times"></i>
+    Not approve
+<% end %>
+</div>
+<% end %>

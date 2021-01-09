@@ -12,8 +12,9 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-        log_in user
-        redirect_back_or user
+      flash[:success] = '欢迎回来' # 不完全正确
+      log_in user
+      redirect_back_or user
     else
       flash[:danger] = '错误的用户名/密码' # 不完全正确
       render 'new'

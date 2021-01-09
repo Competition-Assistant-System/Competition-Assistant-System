@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  
+
   namespace :admin do
     resources :base_score
   end
   namespace :admin do
+    get 'user_confirm/index', to: "user_confirm#index"
+    get 'user_confirm/approve', to: "user_confirm#approve"
+    get 'user_confirm/disapprove', to: "user_confirm#disapprove"
     resources :file_manager, only: [:index, :destroy] do
       get 'download', on: :member
     end
@@ -18,8 +21,11 @@ Rails.application.routes.draw do
   end
 
   resources :score_ranking, only: [:index]
-  
-  resources :users
+
+  resources :users do
+    get 'approve', on: :member
+    get 'disapprove', on: :member
+  end
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

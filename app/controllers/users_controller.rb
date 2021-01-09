@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   layout 'auth', only: [:new]
   skip_before_action :require_login, only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update]
-  before_action :auth_check, only: [:index, :show, :edit, :update]
+  before_action :set_user, except: [:index, :new, :create]
+  before_action :auth_check, except: [:new, :create]
+  before_action :admin_check, only: [:approve, :disapprove]
   
-
 def index
   @user = User.all
 end
@@ -16,7 +16,6 @@ def edit
 end
 
 def destroy
-  @user = User.find(params[:id])
   unless @user.nil?
     @user.destroy
     respond_to do |format|
@@ -55,6 +54,48 @@ def create
     end
 end
 
+# approve the application
+def approve
+  unless admin?(@user) then
+    @user.grant = Grant.find(1)
+    if @user.save
+      respond_to do |format|
+        format.html { redirect_to(@user, flash: { success: '成功通过申请' }) }
+        format.xml  { head :ok }
+      end
+    else
+      flash[:danger] = @user.errors.full_messages
+      redirect_to @user
+    end
+  else
+    respond_to do |format|
+      format.html { redirect_to(@user, flash: { danger: '您不能对管理员操作' }) }
+      format.xml  { head :ok }
+    end
+  end
+end
+
+# disapprove the application
+def disapprove
+  unless admin?(@user) then
+      @user.grant = Grant.find(3)
+      if @user.save
+        respond_to do |format|
+          format.html { redirect_to(@user, flash: { success: '成功拒绝申请' }) }
+          format.xml  { head :ok }
+        end
+      else
+        flash[:danger] = @user.errors.full_messages
+        redirect_to @user
+      end
+  else
+    respond_to do |format|
+      format.html { redirect_to(@user, flash: { danger: '您不能对管理员操作' }) }
+      format.xml  { head :ok }
+    end
+  end
+end
+
 private
 
   def user_params
@@ -63,10 +104,15 @@ private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = User.find(params[:id])
-    @user_info = @user.user_information
-    if @user_info.nil?
-      @user_info = UserInformation.create(user_id: @user.id, nickname: "Geek", school: "none")
+    @user = User.find_by_id(params[:id])
+    if @user.nil?
+      flash[:danger] = "访问了错误的页面"
+      redirect_to current_user
+    else
+      @user_info = @user.user_information
+      if @user_info.nil?
+        @user_info = UserInformation.create(user_id: @user.id, nickname: "Geek", school: "none")
+      end
     end
   end
 
@@ -77,6 +123,13 @@ private
   def auth_check
     unless is_admin? || is_current_user?(@user)
       flash[:danger] = "您没有权限访问指定页面"
+      redirect_to current_user
+    end
+  end
+
+  def admin_check
+    unless is_admin?
+      flash[:danger] = "需要管理员权限"
       redirect_to current_user
     end
   end
