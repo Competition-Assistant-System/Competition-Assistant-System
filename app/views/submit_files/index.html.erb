@@ -19,6 +19,9 @@
             </tr>
           </thead>
           <tbody>
+            <%if @score_item.size == 0%>
+            <tr class="table-active align-middle text-center"><td colspan="6">No record</td></tr>
+            <% end %>
             <% @score_item.each do |item| %>
               <tr>
                   <td class="align-middle text-center"><%= item.base_name %></td>

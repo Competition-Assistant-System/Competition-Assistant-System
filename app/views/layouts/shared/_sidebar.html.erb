@@ -15,7 +15,7 @@
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
     <a class="nav-link" href="<%= root_path %>">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <i class="fas fa-fw fa-table"></i>
       <span>Ranking table</span></a>
   </li>
 
@@ -24,61 +24,56 @@
 
   <!-- Heading -->
   <div class="sidebar-heading">
-    Interface
+    Competition
   </div>
 
-  <!-- Nav Item - Pages Collapse Menu -->
-  <% active_context = active_link?(includes: ['buttons', 'cards']) %>
-
-  <%= nav_context :components, '设置', icon: 'cog', active_link: active_context do %>
-    <h6 class="collapse-header">Custom 设置:</h6>
-    <%= active_link_to 'Buttons', buttons_examples_path, class: 'collapse-item' %>
-    <%= active_link_to 'Cards', cards_examples_path, class: 'collapse-item' %>
-  <% end %>
-
-  <!-- Nav Item - Utilities Collapse Menu -->
-  <%= nav_context :utilities, '发布', icon: 'wrench' do %>
-    <h6 class="collapse-header">Custom 发布:</h6>
-    <%= active_link_to 'Colors', utilities_color_examples_path, class: 'collapse-item' %>
-    <%= active_link_to 'Borders', utilities_border_examples_path, class: 'collapse-item' %>
-    <%= active_link_to 'Animations', utilities_animation_examples_path, class: 'collapse-item' %>
-    <%= active_link_to 'Other', utilities_other_examples_path, class: 'collapse-item' %>
-  <% end %>
+  <li class="nav-item <%= add_active_class(submit_files_path) %>">
+    <a class="nav-link" href="<%= submit_files_path %>">
+      <i class="fas fa-fw fa-cloud-upload-alt"></i>
+      <span>Result upload</span></a>
+  </li>
 
   <!-- Divider -->
   <hr class="sidebar-divider">
 
   <!-- Heading -->
   <div class="sidebar-heading">
-    Addons
+    User Information
+  </div>
+
+  <li class="nav-item <%= add_active_class(user_path current_user) %>">
+    <a class="nav-link" href="<%= user_path current_user %>">
+      <i class="fas fa-fw fa-info-circle"></i>
+      <span>User Information</span></a>
+  </li>
+
+<% if is_admin? %>
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Manager
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <%= nav_context :pages, '队伍详情', icon: 'folder' do %>
-    <h6 class="collapse-header">Login Screens:</h6>
-    <%= active_link_to "Login", login_examples_path, class: 'collapse-item' %>
-    <%= active_link_to "Register", register_examples_path, class: 'collapse-item' %>
-    <%= active_link_to "Forgot Password", forgot_password_examples_path, class: 'collapse-item' %>
-    <div class="collapse-divider"></div>
-    <h6 class="collapse-header">Other Pages:</h6>
-    <%= active_link_to "404 Page", page_404_examples_path, class: 'collapse-item' %>
-    <%= active_link_to "Blank Page", blank_examples_path, class: 'collapse-item' %>
+  <%= nav_context :components, 'Scores', icon: 'random', active_link: active_link?(includes: ['base_score']) do %>
+    <h6 class="collapse-header">Score setting</h6>
+    <%= active_link_to 'Base score setting', admin_base_score_index_path, class: 'collapse-item' %>
   <% end %>
 
-  <!-- Nav Item - Charts -->
-  <li class="nav-item <%= add_active_class(charts_examples_path) %>">
-    <a class="nav-link" href="<%= charts_examples_path %>">
-      <i class="fas fa-fw fa-chart-area"></i>
-      <span>图示</span>
-    </a>
-  </li>
+  <!-- Nav Item - Utilities Collapse Menu -->
+  <%= nav_context :utilities, 'Files', icon: 'file-pdf', active_link: active_link?(includes: ['file_manager']) do %>
+    <h6 class="collapse-header">Files setting</h6>
+    <%= active_link_to 'File manage', admin_file_manager_index_path, class: 'collapse-item' %>
+  <% end %>
 
-  <!-- Nav Item - Tables -->
-  <li class="nav-item <%= add_active_class(tables_examples_path) %>">
-    <a class="nav-link" href="<%= tables_examples_path %>">
-      <i class="fas fa-fw fa-table"></i>
-      <span>表格</span></a>
+  <li class="nav-item <%= add_active_class(users_path) %>">
+    <a class="nav-link" href="<%= users_path %>">
+      <i class="fas fa-fw fa-user"></i>
+      <span>User manage</span></a>
   </li>
+<% end %>
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">

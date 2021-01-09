@@ -1,0 +1,62 @@
+<% provide(:title, "User information") %>
+<h1>User information</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">User information</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="scoreTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th class="align-middle text-center">#</th>
+              <th class="align-middle text-center">Username</th>
+              <th class="align-middle text-center">Email</th>
+              <th class="align-middle text-center">Nickname</th>
+              <th class="align-middle text-center">School</th>
+              <th class="align-middle text-center">Auth</th>
+              <th class="align-middle text-center">Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.each.with_index(1) do |item, index| %>
+            <tr>
+              <th class="align-middle text-center" scope="row"><%= index %></th>
+              <td class="align-middle text-center"><%= item.username %></td>
+              <td class="align-middle text-center"><%= item.email %></td>
+              <td class="align-middle text-center"><%= item.user_information.nickname %></td>
+              <td class="align-middle text-center"><%= item.user_information.school %></td>
+              <td class="align-middle text-center"><%= get_user_auth item %></td>
+              <td>
+                <div class="row">
+                  <div class="align-middle text-center col">
+                  <%= link_to item, :class => "btn btn-danger btn-block", 
+                      data: { confirm: "Are you sure?"}, :method => :delete do%>
+                    <i class="far fa-trash-alt"></i>
+                    Delete
+                  <% end %>
+                  </div>
+                  <div class="align-middle text-center col">
+                  <%= link_to item, :class => "btn btn-primary btn-block", 
+                      :method => :get do %>
+                    <i class="fas fa-info-circle"></i>
+                    Show
+                  <% end %>
+                  </div>
+                  <div class="align-middle text-center col">
+                  <%= link_to edit_user_path(item), :class => "btn btn-primary btn-block", 
+                      :method => :get do %>
+                    <i class="fas fa-eraser"></i>
+                    Modify
+                  <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
