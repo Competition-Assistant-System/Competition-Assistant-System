@@ -32,22 +32,38 @@ module SessionsHelper
     end
 
     def is_admin?
-        logged_in? && current_user.grant.sys_admin
+        logged_in? && admin?(current_user)
     end
 
     def is_valid_user?
-        logged_in? && current_user.grant.sys_read && !is_admin?
+        logged_in? && valid_user?(current_user) && !is_admin?
     end
 
     def is_not_valid_user?
-        logged_in? && current_user.grant.id == 2
+        logged_in? && not_valid_user?(current_user)
     end
 
     def is_valid_not_pass_user?
-        logged_in? && current_user.grant.id == 3
+        logged_in? && valid_not_pass_user?(current_user.grant.id)
     end
 
     def can_upload?
-        (logged_in? && current_user.sys_upload) || is_admin?
+        (logged_in? && current_user.grant.sys_upload) || is_admin?
+    end
+
+    def admin? user
+        user.grant.sys_admin
+    end
+
+    def valid_user? user
+        user.grant.sys_read && !is_admin?
+    end
+
+    def not_valid_user? user
+        user.grant.id == 2
+    end
+
+    def valid_not_pass_user? user
+        user.grant.id == 3
     end
 end

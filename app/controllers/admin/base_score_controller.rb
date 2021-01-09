@@ -51,7 +51,11 @@ class Admin::BaseScoreController < Admin::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_base_score
-      @admin_base_score = ScoreBase.find(params[:id])
+      @admin_base_score = ScoreBase.find_by_id(params[:id])
+      if @admin_base_score.nil?
+        flash[:danger] = "访问了错误的页面"
+        redirect_to admin_base_score_index_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

@@ -22,7 +22,10 @@ Rails.application.routes.draw do
 
   resources :score_ranking, only: [:index]
 
-  resources :users
+  resources :users do
+    get 'approve', on: :member
+    get 'disapprove', on: :member
+  end
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
