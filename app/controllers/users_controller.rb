@@ -1,12 +1,32 @@
 class UsersController < ApplicationController
   layout 'auth', only: [:new]
   skip_before_action :require_login, only: [:new, :create]
-  before_action :set_user, :auth_check, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :auth_check, only: [:index, :show, :edit, :update]
+  
+
+def index
+  @user = User.all
+end
 
 def show
 end
 
 def edit
+end
+
+def destroy
+  @user = User.find(params[:id])
+  unless @user.nil?
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to(users_path, flash: { success: '该记录已被删除' }) }
+      format.xml  { head :ok }
+    end
+  else
+    flash.now[:danger] = '未成功操作，请检查用户是否存在'
+    redirect_to users_path
+  end
 end
 
 def update

@@ -23,7 +23,7 @@ class SubmitFilesController < ApplicationController
   end
 
   def upload
-    @user_id = 1
+    @user_id = current_user.id
     if request.post?
       # save file to path
       uploaded_io = params[:upload_file]
@@ -88,8 +88,7 @@ class SubmitFilesController < ApplicationController
 
   private
     def get_user
-      @user_id = 1
-      @user = User.find_by_id(@user_id)
+      @user = User.find(current_user.id)
     end
 
     # Use callbacks to share common setup or constraints between actions.

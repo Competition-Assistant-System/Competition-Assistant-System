@@ -29,7 +29,9 @@
           </thead>
           <tbody>
             <% if @rank.empty? %>
-            <tr><td colspan="<%= @score_item.size %>">空</td></tr>
+            <tr class="table-active align-middle text-center">
+            <td colspan="<%= @score_item.size * 3 + 4 %>">No record</td>
+            </tr>
             <% else %>
             <% @rank.each.with_index(1) do |item, index| %>
             <tr>

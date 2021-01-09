@@ -33,3 +33,17 @@ Things you may want to cover:
 6. Congratulation!
 
 > NOTE: after run `docker-compose run web rails db:create`, it will take some time to complie webpack.
+
+
+
+## Routing
+
+`/admin/base_score` 管理员基础分数管理
+
+`/admin/file_manager` 管理员提交文件管理
+
+`/submit_files` 用户文件提交
+
+`/score_ranking`  榜单
+
+`/users` 用户管理

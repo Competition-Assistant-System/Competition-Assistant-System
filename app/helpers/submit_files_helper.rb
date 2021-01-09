@@ -20,11 +20,7 @@ module SubmitFilesHelper
     end
 
     def find_user_score_result_by_id id
-        record = @user.score_results.find_by_id id
-        if record.nil?
-            @user.score_results.create(score_base_id: id,score_origin:0)
-        else
-            record
-        end
+        record = @user.score_results.find_by(:score_base_id => id)
+        record || @user.score_results.create(score_base_id: id,score_origin:0)
     end
 end

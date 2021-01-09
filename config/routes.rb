@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     get 'download', on: :member
   end
 
-  resources :final_results, only: [:index]
   resources :score_ranking, only: [:index]
   
   resources :users
@@ -26,11 +25,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   
-  resources :examples, only: :index do
-    get :buttons, :cards, :utilities_color, :utilities_border,
-        :utilities_animation, :utilities_other, :login, :register,
-        :forgot_password, :page_404, :blank, :charts, :tables,
-        on: :collection
-  end
+  # resources :examples, only: :index do
+  #   get :buttons, :cards, :utilities_color, :utilities_border,
+  #       :utilities_animation, :utilities_other, :login, :register,
+  #       :forgot_password, :page_404, :blank, :charts, :tables,
+  #       on: :collection
+  # end
 
 end
