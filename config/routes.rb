@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     resources :base_score
   end
   namespace :admin do
-    get 'user_confirm/index'
+    get 'user_confirm/index', to: "user_confirm#index"
+    get 'user_confirm/approve', to: "user_confirm#approve"
+    get 'user_confirm/disapprove', to: "user_confirm#disapprove"
     resources :file_manager, only: [:index, :destroy] do
       get 'download', on: :member
     end

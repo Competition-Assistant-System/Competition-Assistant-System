@@ -7,6 +7,9 @@ class Admin::UserConfirmController < ApplicationController
       # 3: not passed
         @users = User.all
         @users_unaudit = @users.select{ |user| user.grant_id==2}
+        @users_admin = @users.select{ |user| user.grant_id==0}
+        @users_audit = @users.select{ |user| user.grant_id==1}
+        @users_dis = @users.select{ |user| user.grant_id==3}
     end
 
     # approve the application
@@ -24,7 +27,7 @@ class Admin::UserConfirmController < ApplicationController
     # disapprove the application
     def disapprove(user)
         if(user.grant_id!=0) then
-            user.grant_id = 1
+            user.grant_id = 3
         else
             Logger.new("Admin should not applicate")
         end

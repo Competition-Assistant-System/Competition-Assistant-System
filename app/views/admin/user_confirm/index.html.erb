@@ -8,12 +8,12 @@
 <% if !@user_unaudit.nil? then %>
     <% @user_unaudit.each do |user| %>
         <tr>
-            <td><%= user.nickname %></td>
-            <td><%= user.school %></td>
+            <td><%= user.user_information.nickname %></td>
+            <td><%= user.user_information.school %></td>
             <!-- may need other information-->
-            <td><%= link_to 'Approve', user_confirm, method: approve,
+            <td><%= link_to 'Approve', action: approve,
                             data: {confirm: 'Are you sure?'} %></td>
-            <td><%= link_to 'Disapprove', user_confirm, method: disapprove,
+            <td><%= link_to 'Disapprove', action: disapprove,
                             data: {confirm: 'Are you sure?'} %></td>
         </tr>
     <% end %>
@@ -29,14 +29,74 @@
 <% if !@user_audit.nil? then %>
   <% @user_audit.each do |user| %>
     <tr>
-      <td><%= user.nickname %></td>
-      <td><%= user.school %></td>
-      <td><%= link_to 'Revocation', user_comfirm, method: disapprove,
+      <td><%= user.user_information.nickname %></td>
+      <td><%= user.user_information.school %></td>
+      <td><%= link_to 'Revocation', action: disapprove,
                       data: {confirm: 'Are you sure?'} %></td>
     </tr>
   <% end %>
 <% else %>
   <p> No Audited Application </p>
+<% end %>
+</tbody>
+</table>
+
+<h1> Admin Application </h1>
+<table>
+<tbody>
+<table>
+<tbody>
+<% if !@user_admin.nil? then %>
+  <% @user_admin.each do |user| %>
+    <tr>
+      <td><%= user.user_information.nickname %></td>
+      <td><%= user.user_information.school %></td>
+      <td><%= link_to 'Revocation', action: disapprove,
+                      data: {confirm: 'Are you sure?'} %></td>
+    </tr> %>
+  <% end %>
+<% else %>
+  <p> No Admin Application </p>
+<% end %>
+</tbody>
+</table>
+
+<h1> Disapprove Application </h1>
+<table>
+<tbody>
+<table>
+<tbody>
+<% if !@user_dis.nil? then %>
+  <% @user_dis.each do |user| %>
+    <tr>
+      <td><%= user.user_information.nickname %></td>
+      <td><%= user.user_information.school %></td>
+      <%# <td><%= link_to 'Revocation', action: disapprove,
+                      data: {confirm: 'Are you sure?'} %></td> %>
+    </tr>
+  <% end %>
+<% else %>
+  <p> No Disapprove Application </p>
+<% end %>
+</tbody>
+</table>
+
+
+<h1> All the User </h1>
+<table>
+<tbody>
+<table>
+<tbody>
+<% if !@users.nil? then %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.user_information.nickname %></td>
+      <td><%= user.user_information.school %></td>
+      <td><%= link_to 'Revocation', {controller: user_confirm, action: disapprove}, data: {confirm: 'Are you sure?'} %></td>
+    </tr>
+  <% end %>
+<% else %>
+  <p> No User </p>
 <% end %>
 </tbody>
 </table>
