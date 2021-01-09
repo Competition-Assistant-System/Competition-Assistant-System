@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root 'sessions#new'
+  root 'score_ranking#index'
 
   resources :submit_files, only: [:index, :edit, :update, :destroy] do
     post 'upload', on: :collection
