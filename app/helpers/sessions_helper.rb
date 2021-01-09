@@ -46,4 +46,8 @@ module SessionsHelper
     def is_valid_not_pass_user?
         logged_in? && current_user.grant.id == 3
     end
+
+    def can_upload?
+        (logged_in? && current_user.sys_upload) || is_admin?
+    end
 end
