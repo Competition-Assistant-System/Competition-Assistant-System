@@ -55,7 +55,7 @@ private
   end
 
   def auth_check
-    unless is_admin? || is_current_user?(@user.id)
+    unless is_admin? || is_current_user?(@user)
       flash[:danger] = "您没有权限访问指定页面"
       redirect_to current_user
     end

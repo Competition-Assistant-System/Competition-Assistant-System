@@ -7,8 +7,9 @@ class ApplicationController < ActionController::Base
     
     def require_login
         unless logged_in?
-        flash[:danger] = "您必须登录才能访问指定页面"
-        redirect_to login_path # halts request cycle
+            store_location
+            flash[:danger] = "您必须登录才能访问指定页面"
+            redirect_to login_path # halts request cycle
         end
     end
 end
