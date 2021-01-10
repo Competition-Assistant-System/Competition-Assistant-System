@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :users do
     get 'approve', on: :member
     get 'disapprove', on: :member
+    patch 'update_pwd', on: :member
   end
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
