@@ -40,11 +40,11 @@ module SessionsHelper
     end
 
     def is_not_valid_user?
-        logged_in? && not_valid_user?(current_user)
+        logged_in? && not_valid_user?(current_user) && !is_admin?
     end
 
     def is_valid_not_pass_user?
-        logged_in? && valid_not_pass_user?(current_user.grant.id)
+        logged_in? && valid_not_pass_user?(current_user) && !is_admin?
     end
 
     def can_upload?
