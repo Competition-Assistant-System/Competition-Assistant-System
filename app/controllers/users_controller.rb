@@ -30,11 +30,15 @@ end
 
 def update
   if @user_info.update(info_params)
-    flash[:success] = "个人信息成功更新"
-    render 'show'
+    respond_to do |format|
+      format.html { redirect_to(@user, flash: { success: '个人信息成功更新' }) }
+      format.xml  { head :ok }
+    end
   else
-    flash[:danger] = @user_info.errors.full_messages
-    render 'show'
+    respond_to do |format|
+      format.html { redirect_to(@user, flash: { danger: @user_info.errors.full_messages }) }
+      format.xml  { head :ok }
+    end
   end
 end
 
@@ -54,6 +58,20 @@ def create
     end
 end
 
+def update_pwd
+  if @user.update(user_password)
+    respond_to do |format|
+      format.html { redirect_to(@user, flash: { success: '密码成功更新' }) }
+      format.xml  { head :ok }
+    end
+  else
+    respond_to do |format|
+      format.html { redirect_to(@user, flash: { danger: @user_info.errors.full_messages }) }
+      format.xml  { head :ok }
+    end
+  end
+end
+
 # approve the application
 def approve
   unless admin?(@user) then
@@ -64,8 +82,10 @@ def approve
         format.xml  { head :ok }
       end
     else
-      flash[:danger] = @user.errors.full_messages
-      redirect_to @user
+      respond_to do |format|
+        format.html { redirect_to(@user, flash: { danger: @user.errors.full_messages }) }
+        format.xml  { head :ok }
+      end
     end
   else
     respond_to do |format|
@@ -100,6 +120,10 @@ private
 
   def user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
+
+  def user_password
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
   # Use callbacks to share common setup or constraints between actions.
